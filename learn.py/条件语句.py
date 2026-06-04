@@ -9,6 +9,7 @@
 
 
 # 判断奇偶数
+# 在python中负数取余会变成正数,而c++与java中负数取余之后仍是负数
 # a = int(input("请输入一个数："))
 # if a%2 == 1:
 #     print(f'{a}是奇数')
@@ -37,3 +38,16 @@
 #     pass    #pass在python中表示空语句
 # else:
 #     print('hello')
+
+
+# # 输入1打印hello 2打印world
+# choice = input('please input 1 or 2 : ')
+# # 输入的是字符串格式
+# if choice == '1':
+#     print('hello')
+# elif choice == '2':
+#     print('world')
+# else:
+#     print("输入错误")
+
+# 在python中当有多级条件语句嵌套的时候,当前语句属于哪个代码块,完全取决于缩进的级别
