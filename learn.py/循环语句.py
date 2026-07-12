@@ -76,3 +76,4 @@
 #     Sum += float(i)
 #     count += 1
 # print(f"平均数为:{Sum/count}")
+
