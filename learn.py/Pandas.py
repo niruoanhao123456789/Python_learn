@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 # data = [ 'a' , 'b', 'c' ]
@@ -137,3 +138,22 @@ import pandas as pd
 # df = df.drop_duplicates()
 #
 # print(df.to_string())
+
+
+# 案例
+# 1、10人的成绩，数据范围在50-100，计算平均分、最高分、最低分，并筛出高于平均分的学生人数
+# np.random.seed(42)
+# scores = pd.Series(np.random.randint(50,101,10),index=['学生'+str(i)for i in range(1,11)])
+#
+# print(scores.to_string())
+# print(f'mean: {scores.mean()}')
+# print(f'max: {scores.max()}')
+# print(f'min: {scores.min()}')
+# print(f'others: {scores[scores>scores.mean()]}')
+# print(f'nums: {scores[scores>scores.mean()].count()}') # count() 方法只统计有效数值
+
+# 求出温度变化最大的相邻的两天
+# temperature = pd.Series([28,31,29,32,30,27,33],index = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'])
+# dif = temperature.diff().abs()
+# dif_sort = dif.sort_values()
+# print(dif_sort.keys()[:2].to_list())
