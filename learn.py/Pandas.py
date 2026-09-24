@@ -157,3 +157,51 @@ import pandas as pd
 # dif = temperature.diff().abs()
 # dif_sort = dif.sort_values()
 # print(dif_sort.keys()[:2].to_list())
+
+
+# 已给出10个交易日的收盘价
+# 计算每日收益率（当日收盘价/前日收盘价 - 1）
+# 找出收益率最高与最低的日期
+# 计算波动率，即收益率的标准差
+# prices = pd.Series([102.3,103.5,105.1,104.8,106.2,107.0,106.5,108.1,109.3,110.2]
+#                    ,index=pd.date_range('2026-01-01',periods=10))
+# profit = prices.pct_change() # 当日收盘价/前日收盘价 - 1
+# print(profit)
+#
+# print(f'max: {profit.idxmax()}')
+# print(f'min: {profit.idxmin()}')
+# print(f'std: {profit.std()}')
+
+
+# 已给出某产品过去12个月的销售量
+# 计算季度平均销量（每3个月为一季度）
+# 找出销量最高的月份
+# 计算月环比增长率 （环比指与上个月相比，同比指与往年同期相比）
+# 找出连续增长超过2个月的月份
+# sales = pd.Series([120,135,145,160,155,170,180,175,190,200,210,220],
+#                   index=pd.date_range('2026-01-01', periods=12,freq='ME'))
+# # resample 重新采样
+# print(sales.resample('QE').mean())
+# print(sales.idxmax())
+# print(sales.pct_change())
+#
+# inc = sales.pct_change() > 0
+# print(inc[inc.rolling(3).sum() >= 3].keys()) # 滑动窗口函数
+
+
+# 已给出某商店每小时销售额Series
+# 按天来重采样计算每日的总销售额
+# 分别计算每天[8:00-22:00]与非该时段的销售比例
+# 找出销售额最高的3个小时
+np.random.seed(42)
+hour_sales = pd.Series(np.random.randint(0,100,24),
+                       index=pd.date_range('2026-01-01', periods=24,freq='h'))
+
+day_sales = hour_sales.resample('D').sum()
+business_hour_sales = hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].sum()
+
+# hour_sales.between_time('8:00','22:00')
+not_business_hour_sales = hour_sales.drop(hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].index).sum()
+
+sales = hour_sales.sort_values(ascending=False)
+print(sales.iloc[0:3])
