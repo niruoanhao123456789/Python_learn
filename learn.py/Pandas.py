@@ -193,15 +193,36 @@ import pandas as pd
 # 按天来重采样计算每日的总销售额
 # 分别计算每天[8:00-22:00]与非该时段的销售比例
 # 找出销售额最高的3个小时
-np.random.seed(42)
-hour_sales = pd.Series(np.random.randint(0,100,24),
-                       index=pd.date_range('2026-01-01', periods=24,freq='h'))
+# np.random.seed(42)
+# hour_sales = pd.Series(np.random.randint(0,100,24),
+#                        index=pd.date_range('2026-01-01', periods=24,freq='h'))
+#
+# day_sales = hour_sales.resample('D').sum()
+# business_hour_sales = hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].sum()
+#
+# # hour_sales.between_time('8:00','22:00')
+# not_business_hour_sales = hour_sales.drop(hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].index).sum()
+#
+# sales = hour_sales.sort_values(ascending=False)
+# print(sales.iloc[0:3])
 
-day_sales = hour_sales.resample('D').sum()
-business_hour_sales = hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].sum()
 
-# hour_sales.between_time('8:00','22:00')
-not_business_hour_sales = hour_sales.drop(hour_sales[(hour_sales.index.hour>=8)&(hour_sales.index.hour<=22)].index).sum()
+# 已给出学生的成绩信息
+# 计算每位学生的总分和平均分
+# 按总分从高到低进行排序，并输出前3名学生
+# data = {
+#     '姓名': ['zhangsan','lisi','wangwu','zhaoliu','qianqi'],
+#     '数学': [85,92,78,88,95],
+#     '英语': [90,88,85,92,80],
+#     '物理': [75,80,88,85,90]
+# }
 
-sales = hour_sales.sort_values(ascending=False)
-print(sales.iloc[0:3])
+# 给出某公司销售数据
+# 计算每种产品的总销售额（销售额 = 单价 * 销量）
+# 找出销售额最高的产品
+# 按销售额从高到低排序，并输出所有产品信息
+# data = {
+#     '产品名': ['a','b','c','d'],
+#     '单价': [100,150,200,120],
+#     '销量': [50,30,20,40]
+# }
